@@ -1,0 +1,12 @@
+pandas
+numpy
+imblearn
+scikit-learn
+xgboost
+plotly.express
+seaborn
+mlflow
+dagshub
+dvc
+dvc-s3
+python-dotenv

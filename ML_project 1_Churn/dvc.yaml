@@ -1,0 +1,31 @@
+stages:
+  preprocess:
+    cmd: python src\preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/IT_customer_churn.csv  
+    outs:
+      - data/train/train_data.csv    
+      - data/test/test_data.csv      
+  train:
+    cmd: python src\train.py
+    deps:
+      - src\train.py
+      - data/train/train_data.csv
+    params:
+      - train.param_grid.n_estimators 
+      - train.param_grid.min_child_weight
+      - train.param_grid.subsample
+      - train.param_grid.gamma
+      - train.param_grid.learning_rate 
+    outs:
+      - models/model.pkl
+      - models/transformer.pkl
+  evaluate:
+    cmd: python src\evaluate.py
+    deps:
+      - src\evaluate.py
+      - models/model_logistic.pkl
+      - models/model_xgboost.pkl
+      - models/transformer.pkl
+      - data/test/test_data.csv

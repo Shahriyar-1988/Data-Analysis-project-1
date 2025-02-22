@@ -1,0 +1,25 @@
+preprocess:
+  input: data/raw/IT_customer_churn.csv
+  output: 
+    train: data/train/train_data.csv
+    test: data/test/test_data.csv
+
+train:
+  data: data/train/train_data.csv
+  model_path: models/model.pkl
+  transformer_path: models/transformer.pkl
+  param_grid:
+    n_estimators: [100, 200, 300]
+    min_child_weight: [3, 5, 7]
+    subsample: [0.6, 0.8, 1.0]
+    gamma: [0, 0.1, 0.3, 0.5]
+    learning_rate: [0.01, 0.05, 0.1, 0.2]
+    
+
+evaluate:
+  data: data/test/test_data.csv
+  transformer_path: models\transformer.pkl
+  logistic_model_path: models\model_logistic.pkl
+  xgboost_model_path: models\model_xgboost.pkl
+
+  
